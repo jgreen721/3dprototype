@@ -23,7 +23,7 @@ const Experience = () => {
         new THREE.Vector3(0,50,-350),
         new THREE.Vector3(25,0,-400),
         new THREE.Vector3(-1,-10,-450),
-        new THREE.Vector3(0,0,-500),
+        new THREE.Vector3(0,0,-495),
     ]
 
     const line = useMemo(()=>{
@@ -50,6 +50,7 @@ const Experience = () => {
 
     const cameraRef = useRef();
     const cloudRef = useRef();
+    const planeRef = useRef();
     const scroll = useScroll();
     const clouds =[
         {id:1,position:[4,2,-10],rotation:[1,0,0],scale:3},
@@ -79,12 +80,16 @@ const Experience = () => {
 
     const messages=[
         {id:1,message:"Welcome to AirJustin",blurb:"We hope you enjoy your flight!",position:[-12,10,15]},
-        {id:2,message:"Our first stop",blurb:"This is where it all started! Codecademies and bootcamp!🌎",position:[12,2,-30]},
-        {id:3,message:"More practice, more learning...",blurb:"Digest the course material, plus learn more and keep advancing my skills!🧑‍💻",position:[-55,10,-140]},
-        {id:4,message:"Builds and deployments",blurb:"Finally putting things into prod mode! 😎",position:[35,-15,-240]},
-        {id:5,message:"Now here comes your part",blurb:"Ready to help and contribute to a company, as well as grow my skills!🥳",position:[-10,50,-350]},
+        {id:2,message:"Our first stop",blurb:"This is where it all started! Codecademies and bootcamp!🌎",position:[8,2,-30]},
+        {id:3,message:"More practice, more learning...",blurb:"Digest the course material, plus learn more and keep advancing my skills!🧑‍💻",position:[-35,10,-140]},
+        {id:4,message:"Builds and deployments",blurb:"Finally putting things into prod mode! 😎",position:[25,-15,-240]},
+        {id:5,message:"Now here comes your part",blurb:"Ready to help and contribute to a company, as well as grow my skills!🥳",position:[-6,50,-350]},
         {id:6,message:"The End",blurb:"We cant wait to see you again!✈️",position:[0,2,-499]},
     ]
+
+    let lastPosition=new THREE.Vector3();
+    let hasSpun = false;
+    let counter = 0;
 
     useFrame((state,delta)=>{
         // cloudRef.current.position.x += .07;
@@ -95,10 +100,32 @@ const Experience = () => {
         // }
 
         const currIdx = Math.min(Math.round(lPoints.length * scroll.offset),lPoints.length-1);
-        console.log(currIdx);
+        // console.log(currIdx);
+        // if(lastPosition.x > curLocation.x)
         const curLocation = lPoints[currIdx];
+        // console.log(lastPosition.x,curLocation.x)
+        if(lastPosition.x > curLocation.x){
+            planeRef.current.rotation.z -= .02;
+        }
+        else if(lastPosition.x < curLocation.x){
+            planeRef.current.rotation.z += .02;
+
+        }
+        lastPosition = curLocation;
+
 
         cameraRef.current.position.lerp(curLocation,delta * 24)
+        if(Math.abs(curLocation.z) > 250 && !hasSpun){
+            // console.log('spin damn you!!')
+            planeRef.current.rotation.z += .1;
+                counter++;
+                console.log(counter)
+                if(counter > 60){
+                    hasSpun = true;
+                    planeRef.current.rotation.z = 0;
+                }
+            }
+        
     })
   return (
     <>
@@ -118,7 +145,9 @@ const Experience = () => {
 <group ref={cameraRef}>
     <PerspectiveCamera makeDefault fov={30} position={[0,-.5,35]}/>
     <Float floatIntensity={3} speed={4.5}>
+        <group ref={planeRef}> 
     <Airplane rotation={[0,1.5,0]}/>
+    </group>
     </Float>
 </group>
 <group position={[0,-2,0]}>
