@@ -9,7 +9,7 @@ const BgSphere = () => {
 
  
   return (
-    <Sphere ref={bgRef} scale={100}>
+    <Sphere ref={bgRef} scale={500}>
         <LayerMaterial side={THREE.DoubleSide}>
             <Gradient colorA="lightblue" colorB="white" axes={"y"} start={0} end={.5}/>
         </LayerMaterial>
