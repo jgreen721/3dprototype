@@ -125,13 +125,23 @@ const Experience = () => {
             }
 
 
-            // setOpacityOne(scroll.range(0/5,1/5) * 5)
-            // setOpacityTwo(scroll.range(1/5,1/5) * 5)
-            // setOpacityThree(scroll.range(2/5,1/5) * 5)
-            // setOpacityFour(scroll.range(2.5/5,1/5) * 5)
-            // setOpacityFive(scroll.range(4/5,1/5) * 5)
+            setOpacityOne(scroll.range(0/5,1/5) * 5)
+            setOpacityTwo(scroll.range(1/5,1/5) * 5)
+            setOpacityThree(scroll.range(2/5,1/5) * 5)
+            setOpacityFour(scroll.range(2.5/5,1/5) * 5)
+            setOpacityFive(scroll.range(4/5,1/5) * 5)
         
     })
+
+    // useLayoutEffect(()=>{
+    //       setOpacityOne(scroll.range(0/5,1/5) * 5)
+    //         setOpacityTwo(scroll.range(1/5,1/5) * 5)
+    //         setOpacityThree(scroll.range(2/5,1/5) * 5)
+    //         setOpacityFour(scroll.range(2.5/5,1/5) * 5)
+    //         setOpacityFive(scroll.range(4/5,1/5) * 5)
+    //         console.log("updating opacity")
+
+    // },[])
 
 
 
@@ -145,12 +155,8 @@ const Experience = () => {
     ]
 
     // useLayoutEffect=(()=>{
-    //     setOpacityOne(scroll.range(0/5,1/5) * 5)
-    //     setOpacityTwo(scroll.range(1/5,1/5) * 5)
-    //     setOpacityThree(scroll.range(2/5,1/5) * 5)
-    //     setOpacityFour(scroll.range(2.5/5,1/5) * 5)
-    //     setOpacityFive(scroll.range(4/5,1/5) * 5)
-    // },[])
+      
+    // })
 
   return (
     <>
@@ -158,8 +164,7 @@ const Experience = () => {
 <group>
     {messages.map((m,idx)=>(
         <group key={m.id} position={m.position}>
-        <Text fontSize={.9} color="black">
-        {/* // material-opacity={idx == 0 ? opacityOne : idx == 1 ? opacityTwo : idx == 2 ? opacityThree : idx == 3 ? opacityFour : idx == 4 ? opacityFour : opacityFive}> */}
+        <Text fontSize={.9} color="black" material-opacity={idx == 0 ? opacityOne : idx == 1 ? opacityTwo : idx == 2 ? opacityThree : idx == 3 ? opacityFour : idx == 4 ? opacityFour : opacityFive}>
             {m.message}
         </Text>
         <Text color="black" position={[0,-1,0]}>
