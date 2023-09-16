@@ -158,10 +158,12 @@ const Experience = () => {
 <group>
     {messages.map((m,idx)=>(
         <group key={m.id} position={m.position}>
-        <Text fontSize={.9} material-opacity={idx == 0 ? opacityOne : idx == 1 ? opacityTwo : idx == 2 ? opacityThree : idx == 3 ? opacityFour : idx == 4 ? opacityFour : opacityFive}  color="black">
+        <Text fontSize={.9} color="black">
+        {/* // material-opacity={idx == 0 ? opacityOne : idx == 1 ? opacityTwo : idx == 2 ? opacityThree : idx == 3 ? opacityFour : idx == 4 ? opacityFour : opacityFive}> */}
             {m.message}
         </Text>
-        <Text color="black" fontSize={.5} material-opacity={idx == 0 ? opacityOne : idx == 1 ? opacityTwo : idx == 2 ? opacityThree : idx == 3 ? opacityFour : idx == 4 ? opacityFour :opacityFive} position={[0,-1,0]}>
+        <Text color="black" position={[0,-1,0]}>
+        {/* // fontSize={.5} material-opacity={idx == 0 ? opacityOne : idx == 1 ? opacityTwo : idx == 2 ? opacityThree : idx == 3 ? opacityFour : idx == 4 ? opacityFour :opacityFive}  */}
             {m.blurb}
         </Text>
         </group>
