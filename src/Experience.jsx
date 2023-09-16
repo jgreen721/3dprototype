@@ -125,11 +125,11 @@ const Experience = () => {
             }
 
 
-            setOpacityOne(scroll.range(0/5,1/5) * 5)
-            setOpacityTwo(scroll.range(1/5,1/5) * 5)
-            setOpacityThree(scroll.range(2/5,1/5) * 5)
-            setOpacityFour(scroll.range(2.5/5,1/5) * 5)
-            setOpacityFive(scroll.range(4/5,1/5) * 5)
+            // setOpacityOne(scroll.range(0/5,1/5) * 5)
+            // setOpacityTwo(scroll.range(1/5,1/5) * 5)
+            // setOpacityThree(scroll.range(2/5,1/5) * 5)
+            // setOpacityFour(scroll.range(2.5/5,1/5) * 5)
+            // setOpacityFive(scroll.range(4/5,1/5) * 5)
         
     })
 
