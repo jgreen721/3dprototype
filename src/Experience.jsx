@@ -1,4 +1,4 @@
-import React, {useRef,useState, useMemo} from 'react'
+import React, {useRef,useState,useLayoutEffect, useMemo} from 'react'
 import Airplane from './Airplane'
 import BgSphere from './BgSphere'
 import Clouds from "./Clouds"
@@ -136,27 +136,32 @@ const Experience = () => {
 
 
     const messages=[
-        {id:1,message:"Welcome to AirJustin",blurb:"We hope you enjoy your flight!",position:[-12,10,15],opacity:opacityOne},
-        {id:2,message:"Our first stop",blurb:"This is where it all started! Codecademies and bootcamp!🌎",position:[8,2,-30],opacity:opacityTwo},
-        {id:3,message:"More practice, more learning...",blurb:"Digest the course material, plus learn more and keep advancing my skills!🧑‍💻",position:[-35,10,-140],opacity:opacityThree},
-        {id:4,message:"Builds and deployments",blurb:"Finally putting things into prod mode! 😎",position:[25,-15,-240],opacity:opacityFour},
-        {id:5,message:"Now here comes your part",blurb:"Ready to help and contribute to a company, as well as grow my skills!🥳",position:[10,45,-400],opacity:opacityFour},
-        {id:6,message:"The End",blurb:"We cant wait to see you again!✈️",position:[0,2,-499],opacity:opacityFive},
+        {id:1,message:"Welcome to AirJustin",blurb:"We hope you enjoy your flight!",position:[-12,10,15]},
+        {id:2,message:"Our first stop",blurb:"This is where it all started! Codecademies and bootcamp!🌎",position:[8,2,-30]},
+        {id:3,message:"More practice, more learning...",blurb:"Digest the course material, plus learn more and keep advancing my skills!🧑‍💻",position:[-35,10,-140]},
+        {id:4,message:"Builds and deployments",blurb:"Finally putting things into prod mode! 😎",position:[25,-15,-240]},
+        {id:5,message:"Now here comes your part",blurb:"Ready to help and contribute to a company, as well as grow my skills!🥳",position:[10,45,-400]},
+        {id:6,message:"The End",blurb:"We cant wait to see you again!✈️",position:[0,2,-499]},
     ]
 
     // useLayoutEffect=(()=>{
+    //     setOpacityOne(scroll.range(0/5,1/5) * 5)
+    //     setOpacityTwo(scroll.range(1/5,1/5) * 5)
+    //     setOpacityThree(scroll.range(2/5,1/5) * 5)
+    //     setOpacityFour(scroll.range(2.5/5,1/5) * 5)
+    //     setOpacityFive(scroll.range(4/5,1/5) * 5)
+    // },[])
 
-    // })
   return (
     <>
     <BgSphere/>
 <group>
-    {messages.map(m=>(
+    {messages.map((m,idx)=>(
         <group key={m.id} position={m.position}>
-        <Text fontSize={.9} material-opacity={m.opacity}  color="black">
+        <Text fontSize={.9} material-opacity={idx == 0 ? opacityOne : idx == 1 ? opacityTwo : idx == 2 ? opacityThree : idx == 3 ? opacityFour : idx == 4 ? opacityFour : opacityFive}  color="black">
             {m.message}
         </Text>
-        <Text color="black" fontSize={.5} material-opacity={m.opacity} position={[0,-1,0]}>
+        <Text color="black" fontSize={.5} material-opacity={idx == 0 ? opacityOne : idx == 1 ? opacityTwo : idx == 2 ? opacityThree : idx == 3 ? opacityFour : idx == 4 ? opacityFour :opacityFive} position={[0,-1,0]}>
             {m.blurb}
         </Text>
         </group>
